@@ -38,9 +38,15 @@ read MULTISITE
 docker-compose exec --user www-data phpfpm wp core download --force
 docker-compose exec -T --user www-data phpfpm wp core config --force
 
-# Setup Locale
-echo -n "Locale (ex. it_IT)"
+# Ask Locale
+echo -n "Locale (default en_EN)"
 read LOCALE
+
+# Set default locale
+if ["" = "$LOCALE"]
+then
+	LOCALE="en_EN"
+fi
 
 docker-compose exec -T --user www-data phpfpm wp language core install "$LOCALE"
 
