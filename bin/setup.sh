@@ -42,7 +42,7 @@ docker-compose exec -T --user www-data phpfpm wp core config --force
 echo -n "Locale (ex. it_IT)"
 read LOCALE
 
-docker-compose exec -T --user www-data phpfpm wp language core install $LOCALE
+docker-compose exec -T --user www-data phpfpm wp language core install "$LOCALE"
 
 # Set default admin user if none was provided
 if [ "" = "$ADMIN_USER" ]
